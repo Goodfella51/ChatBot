@@ -29,17 +29,12 @@
             chatbox.innerHTML += `<p><strong>Du:</strong> ${userMessage}</p>`;
             userInput.value = "";
 
-            const response = await fetch("https://api.openai.com/v1/chat/completions", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${apiKey}`
-                },
-                body: JSON.stringify({
-                    model: "Tobi",
-                    messages: [{ role: "user", content: userMessage }]
-                })
-            });
+            const response = await fetch("https://dein-github-user.github.io/api/chat", { 
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ messages: [{ role: "user", content: userMessage }] })
+});
+
 
             const data = await response.json();
             const botReply = data.choices[0].message.content;
